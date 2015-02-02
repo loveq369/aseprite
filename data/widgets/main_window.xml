@@ -14,8 +14,8 @@
 	    <splitter id="timelinesplitter"
 		      vertical="true" expansive="true"
 		      by="percetage" position="100">
-	      <hbox noborders="true" id="workspace" expansive="true" />
 	      <vbox noborders="true" id="timeline" expansive="true" />
+	      <hbox noborders="true" id="workspace" expansive="true" />
 	    </splitter>
 	    <vbox noborders="true" id="toolbar" />
 	  </hbox>

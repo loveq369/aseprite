@@ -198,19 +198,19 @@ void MainWindow::setMode(Mode mode)
 
 bool MainWindow::getTimelineVisibility() const
 {
-  return m_timelineSplitter->getPosition() < 100.0;
+  return m_timelineSplitter->getPosition() > 0.0;
 }
 
 void MainWindow::setTimelineVisibility(bool visible)
 {
   if (visible) {
-    if (m_timelineSplitter->getPosition() >= 100.0)
+    if (m_timelineSplitter->getPosition() <= 0.0)
       m_timelineSplitter->setPosition(m_lastTimelineSplitterPos);
   }
   else {
-    if (m_timelineSplitter->getPosition() < 100.0) {
+    if (m_timelineSplitter->getPosition() > 0.0) {
       m_lastTimelineSplitterPos = m_timelineSplitter->getPosition();
-      m_timelineSplitter->setPosition(100.0);
+      m_timelineSplitter->setPosition(0.0);
     }
   }
   layout();

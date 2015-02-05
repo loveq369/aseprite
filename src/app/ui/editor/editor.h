@@ -218,6 +218,7 @@ namespace app {
     bool onProcessMessage(ui::Message* msg) override;
     void onPreferredSize(ui::PreferredSizeEvent& ev) override;
     void onPaint(ui::PaintEvent& ev) override;
+    void onResize(ui::ResizeEvent& ev) override;
     void onCurrentToolChange();
     void onFgColorChange();
 
@@ -310,6 +311,9 @@ namespace app {
     DocumentView* m_docView;
 
     gfx::Point m_oldPos;
+
+    gfx::Point m_topleft;
+    gfx::Rect m_oldsize;
 
     EditorFlags m_flags;
 

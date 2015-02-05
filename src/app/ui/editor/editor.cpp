@@ -324,6 +324,10 @@ void Editor::setEditorScroll(const gfx::Point& scroll, bool blit_valid_rgn)
   view->setViewScroll(scroll);
   Point newScroll = view->getViewScroll();
 
+  m_topleft = Point(m_offset_x - newScroll.x,
+                    m_offset_y - newScroll.y);
+  printf("SCROLL TOPLEFT x: %d y: %d\n", m_topleft.x, m_topleft.y);
+
   if (blit_valid_rgn) {
     // Move screen with blits
     scrollRegion(region, oldScroll - newScroll);
@@ -1343,6 +1347,25 @@ void Editor::onPaint(ui::PaintEvent& ev)
       g->fillRect(theme->getColor(ThemeColor::EditorFace), rc);
     }
   }
+}
+
+void Editor::onResize(ui::ResizeEvent& ev)
+{
+  View* view = View::getView(this);
+  Rect vp = view->getViewportBounds();
+  int dx = vp.w - m_oldsize.w;
+  int dy = vp.h - m_oldsize.h;
+  if (!(dx == 0 && dy == 0) && !(dx == -12 && dy == -12)) {
+    dx -= 12;
+    dy -= 12;
+    // do something with dx, dy
+    printf("RESIZE dx: %d dy: %d\n", dx, dy);
+
+  }
+
+  m_oldsize = Rect(vp.x, vp.y, vp.w, vp.h);
+
+  Widget::onResize(ev);
 }
 
 // When the current tool is changed
